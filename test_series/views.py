@@ -422,3 +422,6 @@ class EventTypesAPIView(APIView):
             return JsonResponse({'event_types': event_types}, status=200)
         except Exception as e:
             return JsonResponse({'error': 'An error occurred while fetching event types'}, status=500)
+        
+def hello(request):
+    return JsonResponse("Hello")        
