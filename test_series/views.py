@@ -195,9 +195,7 @@ from .forms import StartProctoringSessionForm, EndProctoringSessionForm, RecordP
 from django.contrib.auth import authenticate, login as auth_login
 from django.core.mail import send_mail
 from django.conf import settings
-from django.contrib.auth.models import User
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
 
 @csrf_exempt
 @require_POST
@@ -408,12 +406,21 @@ def get_user_score(request, exam_id):
     except Exception as e:
         return JsonResponse({'error': 'An error occurred while fetching user score'}, status=500)
 
-def count_questions(request):
+def count_questions(request, exam_id):
     try:
-        question_count = Question.objects.count()
-        return JsonResponse({'question_count': question_count}, status=200)
+        exam = Exam.objects.filter(id=exam_id).first()
+        if not exam:
+            return JsonResponse({'error': 'Exam ID not found'}, status=404)
+        
+        question_count = Question.objects.filter(exam_id=exam_id).count()
+        
+        if question_count == 0:
+            return JsonResponse({'error': 'No Questions found for this Exam', 'exam_name': exam.name}, status=404)
+        else:
+            return JsonResponse({'question_count': question_count, 'exam_name': exam.name}, status=200)
+    
     except Exception as e:
-        return JsonResponse({'error': 'An error occurred while counting questions'}, status=500)
+        return JsonResponse({'error': f'An error occurred while counting questions: {str(e)}'}, status=500)
 
 class EventTypesAPIView(APIView):
     def get(self, request, fmt=None):

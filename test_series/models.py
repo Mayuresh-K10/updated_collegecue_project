@@ -28,6 +28,7 @@ class ProctoringEvent(models.Model):
       ]
 
 class Question(models.Model):
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE, related_name='questions')
     question_no = models.IntegerField(unique=True)
     question_name = models.CharField(max_length=255)
     option1 = models.CharField(max_length=255)
