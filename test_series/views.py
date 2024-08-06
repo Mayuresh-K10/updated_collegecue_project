@@ -335,7 +335,7 @@ def submit_answer(request):
             question_no = form.cleaned_data['question_no']
             selected_option = form.cleaned_data['selected_option']
 
-            
+
             session = get_object_or_404(ProctoringSession, id=session_id)
             question = get_object_or_404(Question, question_no=question_no)
 
@@ -352,7 +352,7 @@ def submit_answer(request):
                 if time_taken.total_seconds() > question.time_limit.total_seconds():
                     return JsonResponse({'error': 'Time limit exceeded'}, status=400)
 
-           
+
             user_response.end_time = timezone.now()
             user_response.response = selected_option
             user_response.save()
