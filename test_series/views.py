@@ -224,7 +224,7 @@ def start_proctoring_session(request):
 
             if ProctoringSession.objects.filter(user=request.user, exam=exam).exists():
                 return JsonResponse({'error': 'Proctoring session for this exam already exists'}, status=400)
-            
+
             session = ProctoringSession.objects.create(
                 user=request.user,
                 exam=exam,

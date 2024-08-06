@@ -170,7 +170,7 @@ def send_data_to_google_sheet3(university,officialmale,country_code,mobilenumber
         ]
     else:
         return JsonResponse({'message': "Invalid sheet name"} , safe=False)
-    
+
     body = {
         'values': [row_data]
     }
