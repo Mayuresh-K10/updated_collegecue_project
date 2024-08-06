@@ -18,7 +18,7 @@ class RecordProctoringEventForm(forms.ModelForm):
 # class UserResponseForm(forms.ModelForm):
 #     class Meta:
 #         model = UserResponse
-#         fields = ['response']  
+#         fields = ['response']
 
 class SubmitAnswerForm(forms.Form):
     session_id = forms.IntegerField()

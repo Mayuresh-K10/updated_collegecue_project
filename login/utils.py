@@ -30,7 +30,7 @@ def fetch_data_from_google_sheets():
 #     details = {
 #         "firstname": first_name,
 #         "lastname":last_name,
-#         "email": email, 
+#         "email": email,
 #         "country_code":country_code,
 #         "phoneNumber": phone_number,
 #         "password":password,
@@ -93,7 +93,7 @@ def fetch_data_from_google_sheets():
 #     res = response.text
 #     return JsonResponse({'message': res} , safe = False)
 
-import json
+
 from googleapiclient.discovery import build
 from google.oauth2.service_account import Credentials
 from datetime import datetime
@@ -123,7 +123,7 @@ def send_data_to_google_sheets(first_name, last_name, email, country_code, phone
         ]
     else:
         return JsonResponse({'message': "Invalid sheet name"} , safe=False)
-    
+
     body = {
         'values': [row_data]
     }

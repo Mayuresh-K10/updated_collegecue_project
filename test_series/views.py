@@ -11,7 +11,7 @@
 # from django.conf import settings
 # from django.contrib.auth.models import User
 # from rest_framework.views import APIView
-# 
+#
 # @csrf_exempt
 # @require_POST
 # def custom_login(request):
@@ -120,9 +120,9 @@
 #             user=request.user,
 #             question=question,
 #             session=session,
-#             defaults={'start_time': timezone.now()}  
+#             defaults={'start_time': timezone.now()}
 #         )
-             
+
 #         if not created:
 #             time_taken = timezone.now() - user_response.start_time
 #             if time_taken.total_seconds() > question.time_limit.total_seconds():
@@ -153,7 +153,7 @@
 #         'end_time': session.end_time,
 #         'duration': session.duration.total_seconds()
 #     }
-#     return JsonResponse(data)    
+#     return JsonResponse(data)
 
 # @login_required
 # @csrf_exempt
@@ -210,11 +210,11 @@ def custom_login(request):
         else:
             return JsonResponse({'error': 'Invalid credentials'}, status=400)
     except Exception as e:
-        return JsonResponse({'error': 'An error occurred during login'}, status=500)
+        return JsonResponse({'error': 'An error occurred during login', 'details': str(e)}, status=500)
 
 @login_required
 @require_POST
-@csrf_exempt 
+@csrf_exempt
 def start_proctoring_session(request):
     try:
         form = StartProctoringSessionForm(request.POST)
@@ -264,8 +264,10 @@ def end_proctoring_session(request):
             user_email = request.user.email
             try:
                 send_mail("Proctoring Event Notification", "Session ended", settings.EMAIL_HOST_USER, [user_email])
-            except:
-                pass
+            
+            except Exception as email_error:
+                return JsonResponse({'error': f"Failed to send email to {user_email}: {email_error}"}, status=500)
+            
             return JsonResponse({'status': 'completed'}, status=200)
         else:
             return JsonResponse({'error': 'Invalid data'}, status=400)

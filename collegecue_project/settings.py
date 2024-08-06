@@ -229,9 +229,9 @@ AUTHENTICATION_BACKENDS = (
 #         'proctoring': {
 #             'handlers': ['file'],
 #             'level': 'DEBUG',
-#             'propagate': 
+#             'propagate':
 #         },
-#     }       
+#     }
 
 # LOGIN_REDIRECT_URL = "/"
 # LOGOUT_REDIRECT_URL = "/"

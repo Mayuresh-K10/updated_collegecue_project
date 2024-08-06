@@ -37,17 +37,17 @@ class Question(models.Model):
     option4 = models.CharField(max_length=255)
     time_limit = models.DurationField(default=timedelta(seconds=30))
     time_limit = models.DurationField(default=timedelta(seconds=30))
-    correct_option = models.CharField(max_length=255,default='option1') 
+    correct_option = models.CharField(max_length=255,default='option1')
 
 class UserResponse(models.Model):
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     response = models.TextField()
     start_time = models.DateTimeField()
-    end_time = models.DateTimeField(null=True, blank=True)   
+    end_time = models.DateTimeField(null=True, blank=True)
     session = models.ForeignKey(ProctoringSession, on_delete=models.CASCADE)
 
 class UserScore(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
-    score = models.IntegerField(default=0)     
+    score = models.IntegerField(default=0)

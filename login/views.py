@@ -96,7 +96,7 @@ class Login(View):
                 return JsonResponse({'value_error': 'Please enter Email'}, status=400)
             # if '@gmail.com' not in email:
             #     return JsonResponse({'error': 'Please enter a correct email id'}, status=400)
-            
+
             if not password:
                 return JsonResponse({'error': 'Please enter password'}, status=400)
 

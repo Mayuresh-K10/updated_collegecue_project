@@ -8,7 +8,7 @@ class Job(models.Model):
     requirements = models.TextField()
     published_at = models.DateTimeField(auto_now_add=True)
     experience_yr = models.CharField(max_length=10, default="0-100")
-   
+
     JOB_TITLE_CHOICES = [
     ('Accountant', 'Accountant'),
     ('Account Analyst','Account Analyst'),
@@ -489,7 +489,7 @@ class Company(models.Model):
         ('Arts & Entertainment', 'Arts & Entertainment'),
         ('Auxiliary services', 'Auxiliary services'),
         ('Legal & accounting', 'Legal & accounting'),
-        ('Office administration', 'Office administration'), 
+        ('Office administration', 'Office administration'),
         ('Insurance & pensions', 'Insurance & pensions'),
         ('Repair & installation', 'Repair & installation'),
         ('Public service & defence', 'Public service & defence'),

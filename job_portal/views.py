@@ -1,20 +1,18 @@
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse, HttpResponseNotAllowed
+from django.http import HttpResponseBadRequest, JsonResponse
 from django.middleware.csrf import get_token
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.utils import timezone
 from django.db.models import Q, Count
-from grpc import Status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import CandidateStatus_under_review, Job, Application, Company, CandidateStatus_selected, CandidateStatus_not_selected, CandidateStatus_not_eligible
+from .models import CandidateStatus_under_review, Job, Application, Company, CandidateStatus_selected, CandidateStatus_not_selected, CandidateStatus_not_eligible, Resume
 from .forms import CompanyForm, JobForm, ApplicationForm, ResumeForm
 import json
 from datetime import timedelta
 from django.utils.decorators import method_decorator
 from django.views import View
-from .models import Resume
-from .forms import ResumeForm
+
 
 
 def home(request):
@@ -445,22 +443,22 @@ class SectorChoicesAPIView(APIView):
             return JsonResponse({'choices': sector_choices}, status=200)
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
-        
+
 class CountryChoicesAPIView(APIView):
     def get(self, request, fmt=None):
         try:
             sector_choices = dict(Company.COUNTRY_CHOICES)
             return JsonResponse({'choices': sector_choices}, status=200)
         except Exception as e:
-            return JsonResponse({'error': str(e)}, status=500)        
-        
+            return JsonResponse({'error': str(e)}, status=500)
+
 class JobTitleChoicesAPIView(APIView):
-    def get(self, request, format=None):
+    def get(self, request, fmt=None):
         try:
            job_title_choices = dict(Job.JOB_TITLE_CHOICES)
            return Response({'choices': job_title_choices}, status=200)
         except Exception as e:
-           return Response({'error': str(e)}, status=500)        
+           return Response({'error': str(e)}, status=500)
 
 
 
