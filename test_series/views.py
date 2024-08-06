@@ -221,7 +221,7 @@ def start_proctoring_session(request):
         if form.is_valid():
             exam_id = form.cleaned_data['exam_id']
             exam = get_object_or_404(Exam, id=exam_id)
-            
+
             if ProctoringSession.objects.filter(user=request.user, exam=exam).exists():
                 return JsonResponse({'error': 'Proctoring session for this exam already exists'}, status=400)
             
