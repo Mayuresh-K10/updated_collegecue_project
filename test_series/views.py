@@ -339,7 +339,7 @@ def submit_answer(request):
             session = get_object_or_404(ProctoringSession, id=session_id)
             question = get_object_or_404(Question, question_no=question_no)
 
-            
+
             user_response, created = UserResponse.objects.get_or_create(
                 user=request.user,
                 question=question,
