@@ -174,7 +174,7 @@
 #     user = request.user
 #     exam = get_object_or_404(Exam, id=exam_id)
 #     user_score = get_object_or_404(UserScore, user=user, exam=exam)
-    
+
 #     response_data = {
 #         'user': user.username,
 #         'exam': exam.name,
@@ -321,7 +321,7 @@ def get_question_details(request, question_no):
         }
         return JsonResponse(response_data, status=200)
     except Exception as e:
-        return JsonResponse({'error': 'An error occurred while fetching question details'}, status=500)
+        return JsonResponse({'error': 'An error occurred while fetching question details','details':str(e)}, status=500)
 
 
 @login_required

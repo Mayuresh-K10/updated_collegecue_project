@@ -132,7 +132,7 @@ def send_data_to_google_sheets(first_name, last_name, email, country_code, phone
     result = service.spreadsheets().values().append(
         spreadsheetId=SPREADSHEET_ID, range=sheet_range,
         valueInputOption='RAW', body=body).execute()
-    
+
     return JsonResponse({'message': f"{result.get('updates').get('updatedCells')} cells updated in {sheetname}."} , safe=False)
 
 
