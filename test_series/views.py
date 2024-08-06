@@ -415,7 +415,7 @@ def count_questions(request, exam_id):
             return JsonResponse({'error': 'Exam ID not found'}, status=404)
 
         question_count = Question.objects.filter(exam_id=exam_id).count()
-        
+
         if question_count == 0:
             return JsonResponse({'error': 'No Questions found for this Exam', 'exam_name': exam.name}, status=404)
         else:
