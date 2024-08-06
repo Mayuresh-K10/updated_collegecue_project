@@ -231,7 +231,7 @@ def start_proctoring_session(request):
                 start_time=timezone.now(),
                 status='ongoing'
             )
-            
+
             user_email = request.user.email
             try:
                 send_mail(
