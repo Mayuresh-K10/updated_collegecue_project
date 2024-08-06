@@ -223,7 +223,7 @@ class Job(models.Model):
         ('freelance', 'Freelance'),
         ('full_time', 'Full Time'),
         ('part_time', 'Part Time'),
-          
+
     ]
     job_type = models.CharField(max_length=20, choices=JOB_TYPE_CHOICES, default='full_time')
 

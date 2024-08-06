@@ -23,6 +23,6 @@ class RecordProctoringEventForm(forms.ModelForm):
 class SubmitAnswerForm(forms.Form):
     session_id = forms.IntegerField()
     question_no = forms.IntegerField()
-    selected_option = forms.CharField(max_length=255)        
+    selected_option = forms.CharField(max_length=255)
 
 

@@ -127,7 +127,7 @@ def send_data_to_google_sheets(first_name, last_name, email, country_code, phone
     body = {
         'values': [row_data]
     }
-    
+
     service = build('sheets', 'v4', credentials=credentials)
     result = service.spreadsheets().values().append(
         spreadsheetId=SPREADSHEET_ID, range=sheet_range,
@@ -239,7 +239,7 @@ def send_data_to_google_sheet4(consultant_name,official_email,country_code,mobil
 #     details = {
 #         "firstname": first_name,
 #         "lastname":last_name,
-#         "email": email, 
+#         "email": email,
 #         "country_code":country_code,
 #         "phoneNumber": phone_number,
 #         "password":password,

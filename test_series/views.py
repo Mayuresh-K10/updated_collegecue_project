@@ -142,7 +142,7 @@
 #         return JsonResponse({'message': response_message})
 #     else:
 #         return JsonResponse({'error': 'Invalid data', 'details': form.errors}, status=400)
-    
+
 # @csrf_exempt
 # @login_required
 # def get_session_status(request, session_id):
@@ -272,7 +272,7 @@ def end_proctoring_session(request):
         else:
             return JsonResponse({'error': 'Invalid data'}, status=400)
     except Exception as e:
-        return JsonResponse({'error': 'An error occurred while ending the session'}, status=500)
+        return JsonResponse({'error': 'An error occurred while ending the session', 'details': str(e)}, status=500)
 
 @login_required
 @require_POST

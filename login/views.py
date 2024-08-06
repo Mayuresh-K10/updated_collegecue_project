@@ -44,7 +44,7 @@ class Register(View):
             return JsonResponse({'error': 'Please enter password'}, status=400)
 
         hashed_password = make_password(password)
-        send_data_to_google_sheets(first_name , last_name ,email ,country_code ,phone_number,hashed_password,"Sheet1")       
+        send_data_to_google_sheets(first_name , last_name ,email ,country_code ,phone_number,hashed_password,"Sheet1")
         return JsonResponse({'message':'go to next page'})
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -187,7 +187,7 @@ class Forgot2_view(View):
             confirm_password = form.cleaned_data['confirm_password']
             if password != confirm_password:
                 return JsonResponse({'error': 'Passwords did not match'}, status=400)
-            
+
             hashed_password = make_password(password)
             stored_email = request.session.get('email')
             user = new_user.objects.filter(email=stored_email).first()
