@@ -842,7 +842,7 @@ class Company(models.Model):
     ]
 
     country_type = models.CharField(max_length=50, choices=COUNTRY_CHOICES, default='IN')
-     
+
     def _str_(self):
         return self.name
 

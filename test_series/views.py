@@ -181,7 +181,7 @@
 #         'score': user_score.score
 #     }
 #     return JsonResponse(response_data)
-	
+
 
 
 from django.shortcuts import get_object_or_404
@@ -372,7 +372,7 @@ def submit_answer(request):
             return JsonResponse({'error': 'Invalid data', 'details': form.errors}, status=400)
 
     except Exception as e:
-        return JsonResponse({'error': 'An error occurred while submitting the answer'}, status=500)
+        return JsonResponse({'error': 'An error occurred while submitting the answer','details':str(e)}, status=500)
 
 
 @login_required
@@ -388,7 +388,7 @@ def get_session_status(request, session_id):
     }
         return JsonResponse(data, status=200)
     except Exception as e:
-        return JsonResponse({'error': 'An error occurred while fetching session status'}, status=500)
+        return JsonResponse({'error': 'An error occurred while fetching session status','details':str(e)}, status=500)
 
 
 @login_required
@@ -406,7 +406,7 @@ def get_user_score(request, exam_id):
         }
         return JsonResponse(response_data, status=200)
     except Exception as e:
-        return JsonResponse({'error': 'An error occurred while fetching user score'}, status=500)
+        return JsonResponse({'error': 'An error occurred while fetching user score','details':str(e)}, status=500)
 
 def count_questions(request, exam_id):
     try:
@@ -430,5 +430,5 @@ class EventTypesAPIView(APIView):
             event_types = dict(ProctoringEvent.EVENT_TYPES)
             return JsonResponse({'event_types': event_types}, status=200)
         except Exception as e:
-            return JsonResponse({'error': 'An error occurred while fetching event types'}, status=500)
+            return JsonResponse({'error': 'An error occurred while fetching event types','details':str(e)}, status=500)
             
