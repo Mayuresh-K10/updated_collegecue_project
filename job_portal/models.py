@@ -894,4 +894,4 @@ class CandidateStatus_under_review(models.Model):
     candidate_name = models.CharField(max_length=255)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES,default='under_review')
     company_name = models.CharField(max_length=255)
-    job_id = models.IntegerField()    
+    job_id = models.IntegerField()

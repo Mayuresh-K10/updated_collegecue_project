@@ -242,7 +242,7 @@ def start_proctoring_session(request):
                 )
             except Exception as email_error:
                 return JsonResponse({'error': 'Failed to send email notification', 'details': str(email_error)}, status=500)
-            
+
             return JsonResponse({'session_id': session.id}, status=200)
         else:
             return JsonResponse({'error': 'Invalid data', 'details': form.errors}, status=400)
@@ -264,10 +264,10 @@ def end_proctoring_session(request):
             user_email = request.user.email
             try:
                 send_mail("Proctoring Event Notification", "Session ended", settings.EMAIL_HOST_USER, [user_email])
-            
+
             except Exception as email_error:
                 return JsonResponse({'error': f"Failed to send email to {user_email}: {email_error}"}, status=500)
-            
+
             return JsonResponse({'status': 'completed'}, status=200)
         else:
             return JsonResponse({'error': 'Invalid data'}, status=400)
@@ -286,11 +286,11 @@ def record_proctoring_event(request):
 
             if ProctoringEvent.objects.filter(session=session).exists():
                 return JsonResponse({'error': 'Event for this session already recorded'}, status=400)
-            
+
             event = form.save(commit=False)
             event.session = session
             event.save()
-            
+
             user_email = request.user.email
             try:
                 send_mail(
@@ -301,7 +301,7 @@ def record_proctoring_event(request):
                 )
             except Exception as email_error:
                 return JsonResponse({'status': 'event recorded', 'email_error': str(email_error)}, status=200)
-            
+
             return JsonResponse({'status': 'event recorded'}, status=200)
         else:
             return JsonResponse({'error': 'Invalid data', 'details': form.errors}, status=400)
@@ -398,7 +398,7 @@ def get_user_score(request, exam_id):
         user = request.user
         exam = get_object_or_404(Exam, id=exam_id)
         user_score = get_object_or_404(UserScore, user=user, exam=exam)
-        
+
         response_data = {
             'user': user.username,
             'exam': exam.name,
@@ -413,14 +413,14 @@ def count_questions(request, exam_id):
         exam = Exam.objects.filter(id=exam_id).first()
         if not exam:
             return JsonResponse({'error': 'Exam ID not found'}, status=404)
-        
+
         question_count = Question.objects.filter(exam_id=exam_id).count()
         
         if question_count == 0:
             return JsonResponse({'error': 'No Questions found for this Exam', 'exam_name': exam.name}, status=404)
         else:
             return JsonResponse({'question_count': question_count, 'exam_name': exam.name}, status=200)
-    
+
     except Exception as e:
         return JsonResponse({'error': f'An error occurred while counting questions: {str(e)}'}, status=500)
 
@@ -431,4 +431,3 @@ class EventTypesAPIView(APIView):
             return JsonResponse({'event_types': event_types}, status=200)
         except Exception as e:
             return JsonResponse({'error': 'An error occurred while fetching event types','details':str(e)}, status=500)
-            
