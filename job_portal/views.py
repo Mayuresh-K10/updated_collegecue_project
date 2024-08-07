@@ -461,9 +461,6 @@ class JobTitleChoicesAPIView(APIView):
            return Response({'error': str(e)}, status=500)
 
 
-def home(request):
-     return JsonResponse("Home Page")
-
 
 
 
