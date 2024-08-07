@@ -460,6 +460,15 @@ class JobTitleChoicesAPIView(APIView):
         except Exception as e:
            return Response({'error': str(e)}, status=500)
 
+class LocationChoicesAPIView(APIView):
+    def get(self, request, fmt=None):
+        try:
+           location_choices = dict(Job.LOCATION_CHOICES)
+           return Response({'choices': location_choices}, status=200)
+        except Exception as e:
+           return Response({'error': str(e)}, status=500)
+
+
 
 
 

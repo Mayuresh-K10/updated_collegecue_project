@@ -1,6 +1,6 @@
 from django.urls import path # type: ignore
 from . import views
-from .views import CountryChoicesAPIView, JobTitleChoicesAPIView, JobTypeChoicesAPIView, ExperienceChoicesAPIView, SectorChoicesAPIView, StatusChoicesAPIView, CategoryChoicesAPIView, CompanyListCreateView, CompanyDetailView, WorkplaceTypeChoicesAPIView
+from .views import CountryChoicesAPIView, JobTitleChoicesAPIView, JobTypeChoicesAPIView, ExperienceChoicesAPIView, LocationChoicesAPIView, SectorChoicesAPIView, StatusChoicesAPIView, CategoryChoicesAPIView, CompanyListCreateView, CompanyDetailView, WorkplaceTypeChoicesAPIView
 
 urlpatterns = [
     path('home', views.home, name='home'),
@@ -25,5 +25,5 @@ urlpatterns = [
     path('sector_type_choices/', SectorChoicesAPIView.as_view(), name='sector_choices'),
     path('job_title_choices/', JobTitleChoicesAPIView.as_view(), name='job_title_choices'),
     path('country_type_choices/', CountryChoicesAPIView.as_view(), name='country_type_choices'),
-
+    path('location_choices/', LocationChoicesAPIView.as_view(), name='location_choices'),
 ]

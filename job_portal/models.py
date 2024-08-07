@@ -261,6 +261,17 @@ class Job(models.Model):
     ]
 
     workplaceTypes = models.CharField(max_length=20, choices=WORKPLACE_CHOICES, default='On-site')
+    LOCATION_CHOICES = [
+    ('Banglore', 'Banglore'),    
+    ('Delhi', 'Delhi'),
+    ('Hyderabad', 'Hyderabad'),
+    ('Jaipur', 'Jaipur'),
+    ('Lucknow', 'Lucknow'),
+    ('Mumbai', 'Mumbai'),
+    ('Pune', 'Pune'), 
+    ]
+    locations = models.CharField(max_length=20, choices=WORKPLACE_CHOICES, default='Pune')
+
     questions = models.TextField(blank=True, null=True)
     def __str__(self):
         return self.job_title
