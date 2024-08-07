@@ -35,8 +35,7 @@ class Question(models.Model):
     option2 = models.CharField(max_length=255)
     option3 = models.CharField(max_length=255)
     option4 = models.CharField(max_length=255)
-    time_limit = models.DurationField(default=timedelta(seconds=30))
-    time_limit = models.DurationField(default=timedelta(seconds=30))
+    time_limit = models.DurationField(default=timedelta(seconds=60))
     correct_option = models.CharField(max_length=255,default='option1')
 
 class UserResponse(models.Model):
