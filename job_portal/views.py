@@ -261,7 +261,7 @@ class CompanyListCreateView(View):
             data = json.loads(request.body)
             form = CompanyForm(data)
             if form.is_valid():
-                company = form.save()
+                form.save()
                 return JsonResponse({'message': 'Company Created Successfully'}, status=201)
             else:
                 return JsonResponse(form.errors, status=400)
@@ -460,6 +460,9 @@ class JobTitleChoicesAPIView(APIView):
         except Exception as e:
            return Response({'error': str(e)}, status=500)
 
+
+def home(request):
+     return JsonResponse("Home Page")
 
 
 

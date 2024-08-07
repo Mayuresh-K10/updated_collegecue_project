@@ -182,7 +182,7 @@ class Forgot2_view(View):
         form = Forgot2Form(data)
         print(form.is_valid())
         if form.is_valid():
-            forgot2=form.save(commit=False)
+            form.save(commit=False)
             password = form.cleaned_data['password']
             confirm_password = form.cleaned_data['confirm_password']
             if password != confirm_password:
